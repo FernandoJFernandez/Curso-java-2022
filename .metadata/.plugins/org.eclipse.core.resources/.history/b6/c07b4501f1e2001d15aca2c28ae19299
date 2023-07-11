@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.pildorasinformaticas.productos.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lista Productos</title>
+	<style type="text/css">
+		.cabecera{
+			border-bottom: solid #F00 1px;
+		}
+	</style>
+</head>
+	<% 
+		//Obtiene los productos del controlador (Servlet)
+		List<Productos> losProductos = (List<Productos>) request.getAttribute("LISTAPRODUCTOS");
+	%>
+<body>
+	<table border="1">
+		<tr>
+			<td class="cabecera">Código Artículo</td>
+			<td class="cabecera">Sección</td>
+			<td class="cabecera">Nombre Artículo</td>
+			<td class="cabecera">Fecha</td>
+			<td class="cabecera">Precio</td>
+			<td class="cabecera">Importado</td>
+			<td class="cabecera">País de Origen</td>
+		</tr>
+		
+		<% for(Productos tempProd : losProductos){ %>
+			<tr>
+				<td><%= tempProd.getcArt() %></td>
+				<td><%= tempProd.getSeccion() %></td>
+				<td><%= tempProd.getnArt() %></td>
+				<td><%= tempProd.getFecha() %></td>
+				<td><%= tempProd.getPrecio() %></td>
+				<td><%= tempProd.getImportado() %></td>
+				<td><%= tempProd.getpOrig() %></td>
+			</tr>
+		<% } %>
+	</table>
+</body>
+</html>

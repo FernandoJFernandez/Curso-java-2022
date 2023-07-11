@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Video 236: Formulario de Login</title>
+</head>
+<body>
+	<%@ page import = "java.sql.*" %>
+	
+	<%
+		String usuario = request.getParameter("usuario");
+		String contra = request.getParameter("contra");
+		
+		//cargamos el driver para conectar
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		try{
+			//conexion a BBDD
+			//Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_jsp?","root","");
+			Connection miConexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto_jsp? useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root",""); 	
+
+			PreparedStatement c_reparada = miConexion.prepareStatement("SELECT * FROM USUARIOS WHERE Usuario=? AND Contraseña=?"); 
+			
+			c_reparada.setString(1, usuario);
+			c_reparada.setString(2, contra);
+			ResultSet miResultset = c_reparada.executeQuery();
+			
+			if(miResultset.absolute(1)) out.println("Usuario autorizado");
+			else out.println("No hay usuarios con esos datos");
+		
+		}catch(Exception e){
+			out.println("Ha habido un error");
+		}
+	%>
+</body>
+</html>

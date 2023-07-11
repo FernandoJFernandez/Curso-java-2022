@@ -1,0 +1,17 @@
+código sql para crear la misma db rápidamente
+
+1 ejecutar  : 
+CREATE DATABASE proyecto_jsp;
+
+2 ejecutar   :
+ USE proyecto_jsp;
+    CREATE TABLE usuarios(
+    Id INT AUTO_INCREMENT,
+    Nombre VARCHAR(20),
+    Apellido VARCHAR(20),
+    Usuario VARCHAR(20),
+    Contrasena VARCHAR(20),
+    Pais VARCHAR(20),
+    Tecnologia VARCHAR(20),
+    PRIMARY KEY (Id)
+    );

@@ -1,0 +1,68 @@
+package poo;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class Pruebas {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Empleados trabajador1=new Empleados("Paco");
+		Empleados trabajador2=new Empleados("Ana");
+		Empleados trabajador3=new Empleados("Antonio");
+		Empleados trabajador4=new Empleados("María");
+		
+		//Cambiar de sección
+		trabajador1.cambiaSeccion("RRHH");
+		//Intentar cambiar de nombre (no se puede porque está bloqueado como constante con final)
+		//trabajador1.cambiaNombre("María");
+
+		//Salida
+		/*
+		System.out.println(trabajador1.devuelveDatos());
+		System.out.println(trabajador2.devuelveDatos());
+		System.out.println(trabajador3.devuelveDatos());
+		System.out.println(trabajador4.devuelveDatos());
+		*/
+		System.out.println(trabajador1.devuelveDatos() + "\n" +
+						   trabajador2.devuelveDatos() + "\n" +
+						   trabajador3.devuelveDatos() + "\n" +
+						   trabajador3.devuelveDatos());
+		// Llamada a método estático
+		System.out.println(Empleados.dameIdSiguiente());
+	}
+
+}
+
+class Empleados {
+	//Método constructor
+	public Empleados(String nom) {
+		nombre=nom;
+		seccion="Administración";
+		Id=IdSiguiente;
+		IdSiguiente++;
+	}
+	
+	//Getter & Setter
+	public String devuelveDatos() { //Getter
+		return "El nombre es: " + nombre + " la sección es " + seccion + " y el Id=" + Id;
+	}
+	public void cambiaSeccion(String seccion) { //Setter
+		this.seccion=seccion;
+	}
+	/*
+	public void cambiaNombre(String nombre) { //Setter
+		this.nombre=nombre;
+	}
+	*/
+	
+	public static String dameIdSiguiente() {
+		return "El IdSiguiente es: " + IdSiguiente;
+	}
+	
+	//Variables de clase
+	private final String nombre; //Se convierte en constante con final
+	private String seccion;	
+	private int Id; 
+	private static int IdSiguiente=1; //Único campo Id compartido entre todas las instancias con static 
+}

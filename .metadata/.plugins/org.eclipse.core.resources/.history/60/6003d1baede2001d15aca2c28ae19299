@@ -1,0 +1,56 @@
+package com.pildorasinformaticas.productos;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.*;
+
+import javax.sql.DataSource;
+
+public class ModeloProductos {
+
+	private DataSource origenDatos;
+	
+	public ModeloProductos(DataSource origenDatos) {
+		//Pool de conexión
+		this.origenDatos = origenDatos;
+	}
+	
+	public List<Productos> getProductos() throws Exception{
+
+		List<Productos> productos = new ArrayList<>();
+		
+		//Crear conexión con bbdd
+		Connection miConexion = null;
+		Statement miStatement = null;
+		ResultSet miResultSet= null;
+		
+
+		//Usamos el pool para establecer la conexión con la bbdd
+		miConexion=origenDatos.getConnection();
+			
+		//Crear sentencia sql y statement
+		String instruccionSql = "SELECT * FROM PRODUCTOS";
+		miStatement = miConexion.createStatement();
+			
+		//Ejecuta sql
+		miResultSet = miStatement.executeQuery(instruccionSql);
+			
+		//Recorrer el resulset obtenido
+		while(miResultSet.next()) {
+			String c_art = miResultSet.getString("CÓDIGOARTÍCULO");
+			String seccion = miResultSet.getString("SECCIÓN");
+			String nArt = miResultSet.getString("NOMBREARTÍCULO");
+			String precio = miResultSet.getString("PRECIO");
+
+			String fecha = miResultSet.getString("FECHA");
+			String importado = miResultSet.getString("IMPORTADO");
+			String pOrig = miResultSet.getString("PAÍSDEORIGEN");
+				
+			Productos tempProd = new Productos(c_art,seccion,nArt,precio,fecha,importado,pOrig);
+
+			productos.add(tempProd);
+		}
+		return productos;
+	}
+}

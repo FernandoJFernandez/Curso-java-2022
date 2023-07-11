@@ -1,0 +1,42 @@
+package poo;
+
+// Objeto Coche
+public class Coche {
+	//Características comunes
+	private int ruedas;
+	private int largo;
+	private int ancho;
+	private int motor;
+	private int peso_plataforma;
+	
+	//Propiedades variables
+	private String color;
+	private int peso_total;
+	private boolean asientos_cuero, climatizador;
+	
+	//Método constructor
+	public Coche() {
+		ruedas=4;
+		largo=2000;
+		ancho=300;
+		motor=1600;
+		peso_plataforma=500;
+	}
+	
+	//Método getter
+	public String dime_largo() {
+		return "El largo del coche es " + largo;
+	}
+	
+	//Setter
+	public void establece_color(String color_coche) {
+		//color="azul";
+		color=color_coche;
+	}
+	
+	//Getter
+	public String dime_color() {
+		return "El color del coche es " + color;
+	}
+	
+}

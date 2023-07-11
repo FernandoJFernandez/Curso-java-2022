@@ -1,0 +1,44 @@
+package poo;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class Uso_Empleado {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+
+class Empleado {
+	//Método constructor
+	public Empleado(String nom, double sue, int agno, int mes, int dia) {
+		nombre=nom;
+		sueldo=sue;
+		GregorianCalendar calendario=new GregorianCalendar(agno, mes-1, dia);
+		altaContrato=calendario.getTime();
+	}
+	
+	//Getter & Setter
+	public String dameNombre() { //Getter
+		return nombre;
+	}
+	public double dameSueldo() { //Getter
+		return sueldo;
+	}
+	public Date dameFechaContrato() { //Getter
+		return altaContrato;
+	}
+	public void subeSueldo(double porcentaje) { //Setter
+		double aumento=sueldo*porcentaje/100;
+		sueldo+=aumento;
+	}
+	
+	//Variables de clase
+	private String nombre;
+	private double sueldo;
+	private Date altaContrato;
+	
+}

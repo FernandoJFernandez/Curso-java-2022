@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2825629967.index
+2825629967.index
+1567573211.index
+1201577051.index
+1806086004.index
+2817392587.index
+3754179778.index
+1106555391.index

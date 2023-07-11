@@ -1,0 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page limport="java.util.*, com.pildorasinformaticas.productos.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lista Productos</title>
+</head>
+<body>
+
+</body>
+</html>

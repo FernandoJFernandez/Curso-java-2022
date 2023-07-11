@@ -1,0 +1,13 @@
+INDEX VERSION 1.132
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1567573211.index
+\Primeros_pasos_JSP\src\main\java
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\913733407.index
+\Primeros_pasos_JSP\src\main\java
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2825629967.index
+\Primeros_pasos_JSP\src\main\java
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2817392587.index
+\Web_de_Productos\src\main\java
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1505870949.index
+\Primeros_pasos_JSP\src\main\java
+C:\Users\vboxuser\Desktop\Curso java 2022\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1201577051.index
+\PrimerosServlets\src\main\java

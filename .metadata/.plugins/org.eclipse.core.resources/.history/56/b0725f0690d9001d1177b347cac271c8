@@ -1,0 +1,10 @@
+package transacciones;
+
+public class Inserta_Clientes_Pedidos {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

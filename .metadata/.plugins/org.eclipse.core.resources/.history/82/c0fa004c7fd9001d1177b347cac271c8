@@ -1,0 +1,70 @@
+package controlador;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import modelo.CargaMenus;
+import vista.Marco_Aplicacion2;
+
+//WINDOWADAPTER, IMPLEMENTA LA INTERFAZ WINDOWLISTENER.
+//SOBREESCRIBIMOS EL METODO WINDOWOPENED(),  QUE VIENE CON LA CLASE WINDOWADAPTER. 
+//ESTE M�TODO RECIVE UN PAR�METRO DE TIPO WINDOWEVENT.
+
+public class ControladorCargaMenus extends WindowAdapter{
+	
+	
+	//CONSTRUCTOR
+	//PARA CARGAR EL JCOMBOBOX QUE EST� EN LA CLASE A0_MarcoApp, 
+	//SE NECESITA PASAR A ESTA CLASE, UN ARGUMENTO DE TIPO A0_MarcoApp.
+	
+	
+	public ControladorCargaMenus(Marco_Aplicacion2 elmarco) {
+	
+		this.elmarco = elmarco;
+		
+	}
+	
+	
+	
+	//ESTE M�TODO EJECUTA SU C�DIGO AL ABRIR UNA VENTANA,  UN JFRAME.
+	//ESTE METODO TIENE QUE EJECUTAR LA CONSULTA SQL.
+	public void windowOpened(WindowEvent e) {
+		
+		//LLAMAMOS AL M�TODO QUE EJECUTA LA CONSULTA, PARA CARGAR EL JCOMBOBOX
+		obj.ejecutaConsultas();
+		
+		
+		//RECORREMOS EL RESULTSET DE LA CLASE A1_CARGASECCIONES
+		try {
+			
+			//rs VARIABLE QUE ALMACENA EL RESULTADO DE LA CONSULTA A LAS DIFERENTES SECCIONES..
+			//EN LA CLASE A1_CARGASECCIONES. rs ES PUBLIC.
+			
+			while(obj.rs.next()) {
+				//"A CADA VUELTA DE BUCLE, AGREGAMOS AL JCOMBOBOX DEL MARCO, LOS ITEMS" ..
+				//"(CON OBJ USAMOS LA VARIABLE rs Y OBTENEMOS EL STRING DE LA COLUMNA 1)".
+				elmarco.secciones.addItem(obj.rs.getString(1));
+			}
+			
+			while(obj.rs2.next()) {
+				elmarco.paises.addItem(obj.rs2.getString(1));
+			}
+			
+			
+		}catch(Exception e2){
+			
+			e2.printStackTrace();
+			
+		}
+		
+	}
+
+	
+	
+	//--------------CAMPOS DE CLASE----------------
+	
+	//DECLARAMOS E INICIAMOS
+	CargaMenus obj = new CargaMenus();
+	//DECLARAMOS
+	private Marco_Aplicacion2 elmarco; 
+}

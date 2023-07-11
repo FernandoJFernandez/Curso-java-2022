@@ -1,0 +1,176 @@
+package com.pildorasinformaticas.productos;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+/**
+ * Servlet implementation class ControladorProductos
+ */
+@WebServlet("/ControladorProductos")
+public class ControladorProductos extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private ModeloProductos modeloProductos;
+	
+	//Definir o establecer el datasource
+	@Resource (name="jdbc/productos")
+	private DataSource miPool; 
+	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		
+		try {
+			modeloProductos = new ModeloProductos(miPool);
+		}catch(Exception e) {
+			throw new ServletException(e);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//Leer el parámetro del formulario
+		String elComando = request.getParameter("instruccion");
+		
+		//Si no se envía el parámetro, listar productos
+		if(elComando==null) elComando="listar";
+		
+		//Redirigir el flujo de ejecución al método adecuado
+		switch (elComando) {
+		case "listar":
+			obtenerProductos(request, response);
+			break;
+		case "insertarBBDD":
+			agregarProductos(request, response);
+			break;
+		case "cargar":
+			try {
+				cargaProductos(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "actualizarBBDD":
+			try {
+				actualizaProductos(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		case "eliminar":
+			try {
+				eliminarProductos(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			obtenerProductos(request, response);
+		}
+	}
+
+	private void eliminarProductos(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//Capturar el Código Artículo
+		String CodArticulo = request.getParameter("CArticulo");
+
+		//Borrar producto de la BBDD
+		modeloProductos.eliminarProducto(CodArticulo);
+		
+		//Volver a listar productos
+		obtenerProductos(request, response);
+	}
+
+	private void actualizaProductos(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//Leer los datos que le vienen del formulario actualizar
+		String CodArticulo = request.getParameter("CArt");
+		String Seccion = request.getParameter("seccion");
+		String NombreArticulo = request.getParameter("NArt");
+		String Fecha = request.getParameter("fecha");
+		String Precio = request.getParameter("precio");
+		String Importado = request.getParameter("importado");
+		String PaisOrigen = request.getParameter("POrig");
+		
+		//Crear un objeto de tipo Producto con la info del formulario
+		Productos ProductoActualizado = new Productos(CodArticulo, Seccion, NombreArticulo, Fecha, Precio, Importado, PaisOrigen);
+
+		//Actualizar la BBDD con la info del objeto Producto
+		modeloProductos.actualizarProducto(ProductoActualizado);
+		
+		//Volver al listado con la info actualiza
+		obtenerProductos(request, response);
+	}
+
+	private void cargaProductos(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		//Leer el Código Artículo que viene del listado
+		String codigoArticulo = request.getParameter("CArticulo");
+
+		//Enviar Código Artículo al modelo
+		Productos elProducto = modeloProductos.getProducto(codigoArticulo);
+
+		//Colocar atributo correspondiente al Código Artículo
+		request.setAttribute("ProductoActualizar", elProducto);
+		
+		//Enviar producto al formulario de actualizar
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/actualizarProducto.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void agregarProductos(HttpServletRequest request, HttpServletResponse response) {
+		//Leer la información del producto que viene del formulario
+		String CodArticulo = request.getParameter("CArt");
+		String Seccion = request.getParameter("seccion");
+		String NombreArticulo = request.getParameter("NArt");
+		String Fecha = request.getParameter("fecha");
+		String Precio = request.getParameter("precio");
+		String Importado = request.getParameter("importado");
+		String PaisOrigen = request.getParameter("POrig");
+
+		//Crear un objeto de tipo Producto
+		Productos NuevoProducto = new Productos(CodArticulo, Seccion, NombreArticulo, Fecha, Precio, Importado, PaisOrigen);
+		
+		//Enviar el objeto al modelo y después insertar el objeto Producto en la BBDD
+		try {
+			modeloProductos.agregarElNuevoProducto(NuevoProducto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//Volver al listado de Productos
+		obtenerProductos(request, response);
+	}
+
+	private void obtenerProductos(HttpServletRequest request, HttpServletResponse response) {
+		//Obtener la lista de productos desde el modelo
+		List<Productos> productos;
+
+		try {
+			productos = modeloProductos.getProductos();
+			
+		//Agregar lista de productos al request
+		request.setAttribute("LISTAPRODUCTOS", productos);
+		
+		//Enviar ese request a la página JSP
+		RequestDispatcher miDispatcher = request.getRequestDispatcher("/ListaProductos.jsp");
+		miDispatcher.forward(request, response);
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

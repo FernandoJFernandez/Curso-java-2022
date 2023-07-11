@@ -1,0 +1,9 @@
+<html>
+<head>
+	<title>Primer JSP</title>
+</head>
+<body>
+	<h1>Video 229: Primer JSP</h1>
+	<p>Hola Alumnos!! la fecha del sistema es: <%= new java.util.Date() %></p>
+</body>
+</html>

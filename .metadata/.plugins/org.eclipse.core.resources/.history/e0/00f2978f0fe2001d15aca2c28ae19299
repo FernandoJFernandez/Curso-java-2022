@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Llamada a los métodos de Cálculos</title>
+</head>
+<body>
+	<h1>Llamada a los métodos de Cálculos</h1>
+	
+	El resultado de la suma es: <%= pildorasinformaticas.com.CalculosMatematicos.Calculos.metodoSuma(5, 7) %>
+	<br>
+	El resultado de la suma es: <%= pildorasinformaticas.com.CalculosMatematicos.Calculos.metodoResta(5,7) %>
+	<br>
+	El resultado de la suma es: <%= pildorasinformaticas.com.CalculosMatematicos.Calculos.metodoMultiplica(5,7) %>
+</body>
+</html>

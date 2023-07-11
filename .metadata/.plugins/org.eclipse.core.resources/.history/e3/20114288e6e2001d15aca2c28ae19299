@@ -1,0 +1,19 @@
+package com.pildorasinformaticas.productos;
+
+import java.util.*;
+
+import javax.sql.DataSource;
+
+public class ModeloProductos {
+
+	private DataSource origenDatos;
+	
+	public ModeloProductos(DataSource origenDatos) {
+		this.origenDatos = origenDatos;
+	}
+	
+	public List<Productos> getProductos() throws Exception{
+		List<Productos> productos = new ArrayList<>();
+	}
+	
+}

@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class Prueba_TreeSet3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		//Ordena por número
+		Articuloy primero=new Articuloy(1, "Primer artículo");
+		Articuloy segundo=new Articuloy(200, "Segundo artículo");
+		Articuloy tercer=new Articuloy(3, "Tercer artículo");
+		
+		TreeSet<Articuloy> ordenaArticulos=new TreeSet<Articuloy>();
+		ordenaArticulos.add(tercer);
+		ordenaArticulos.add(primero);
+		ordenaArticulos.add(segundo);
+
+		//Bucle for-each para mostar la información
+		for (Articuloy art : ordenaArticulos) {
+			System.out.println(art.getDescripcion());		
+		}
+		
+		//Ordena alfabéticamente
+		Articuloy comparadorArticulos=new Articuloy();
+		
+		TreeSet <Articuloy> ordenaArticulos2=new TreeSet<Articuloy>(comparadorArticulos);
+		
+		ordenaArticulos2.add(primero);
+		ordenaArticulos2.add(segundo);
+		ordenaArticulos2.add(tercer);
+		
+		//Bucle for-each para mostar la información
+		for (Articuloy art : ordenaArticulos2) {
+			System.out.println(art.getDescripcion());		
+		}
+	}
+
+}
+
+class Articuloy implements Comparable<Articuloy>, Comparator<Articuloy>{
+	
+	public Articuloy() {
+		
+	}
+
+	public Articuloy(int num, String desc) {
+		numero_articulo=num;
+		descripcion=desc;
+	}
+	
+	@Override
+	public int compareTo(Articuloy o) {
+		// TODO Auto-generated method stub
+		return numero_articulo - o.numero_articulo;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	private int numero_articulo;
+	private String descripcion;
+	
+	@Override
+	public int compare(Articuloy arg0, Articuloy arg1) {
+		// TODO Auto-generated method stub
+		String descripcionA=arg0.getDescripcion();
+		String descripcionB=arg1.getDescripcion();
+		
+		return descripcionA.compareTo(descripcionB);
+
+	}
+}

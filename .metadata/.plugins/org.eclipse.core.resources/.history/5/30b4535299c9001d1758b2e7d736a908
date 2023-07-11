@@ -1,0 +1,49 @@
+package poo;
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+public class Pruebas {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Empleados trabajador1=new Empleados("Paco", 1);
+		Empleados trabajador2=new Empleados("Ana", 2);
+
+		//Cambiar de sección
+		trabajador1.cambiaSeccion("RRHH");
+		//Intentar cambiar de nombre (no se puede porque está bloqueado como constante con final)
+		//trabajador1.cambiaNombre("María");
+
+		//Salida
+		System.out.println(trabajador1.devuelveDatos());
+		System.out.println(trabajador2.devuelveDatos());
+	}
+
+}
+
+class Empleados {
+	//Método constructor
+	public Empleados(String nom, int Id) {
+		nombre=nom;
+		seccion="Administración";
+		this.Id=Id;
+	}
+	
+	//Getter & Setter
+	public String devuelveDatos() { //Getter
+		return "El nombre es: " + nombre + " la sección es " + seccion + " y el Id= " + Id;
+	}
+	public void cambiaSeccion(String seccion) { //Setter
+		this.seccion=seccion;
+	}
+	/*
+	public void cambiaNombre(String nombre) { //Setter
+		this.nombre=nombre;
+	}
+	*/
+	//Variables de clase
+	private final String nombre; //Se convierte en constante con final
+	private String seccion;	
+	private int Id;
+}

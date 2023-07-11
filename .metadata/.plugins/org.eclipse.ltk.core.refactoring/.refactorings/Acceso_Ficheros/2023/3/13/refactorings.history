@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Acceso_Fichero.java&apos; to &apos;Acceso_Ficheros/src/ficheros_directorios&apos;&#x0D;&#x0A;- Original project: &apos;Acceso_Ficheros&apos;&#x0D;&#x0A;- Destination element: &apos;Acceso_Ficheros/src/ficheros_directorios&apos;&#x0D;&#x0A;- Original element: &apos;leyendo.Acceso_Fichero.java&apos;" description="Copy compilation unit" destination="/src&lt;ficheros_directorios" element1="/src&lt;leyendo{Acceso_Fichero.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1680176772807" units="1" version="1.0"/>
+</session>

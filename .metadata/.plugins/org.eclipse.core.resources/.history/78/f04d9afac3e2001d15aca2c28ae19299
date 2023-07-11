@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Video 247: Registro de usuarios</title>
+</head>
+<body>
+	<form action="RegistroUsuarios" method="get">
+	
+	Nombre: <input type="text" name="nombre">
+	<br><br>
+	Apellido: <input type="text" name="apellido">
+	<br><br>	
+	<input type="submit" value="Enviar">	
+	
+	</form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS empleados (
+	Nombre VARCHAR(20),
+	Apellido VARCHAR(20),
+	Puesto VARCHAR(20),
+	Salario DECIMAL
+);
+
+INSERT INTO empleados VALUES
+("Ana", "López", "Directora", 75000),
+("Antonio", "Fernandez", "Administrativo", 35000),
+("Sandra", "Fernandez", "Jefa Area", 45000);

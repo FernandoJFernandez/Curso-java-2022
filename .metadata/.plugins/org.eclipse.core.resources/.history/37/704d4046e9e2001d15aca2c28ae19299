@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, com.pildorasinformaticas.productos.*" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Lista Productos</title>
+</head>
+	<% 
+		//Obtiene los productos del controlador (Servlet)
+		List<Productos> losProductos = (List<Productos>) request.getAttribute("LISTAPRODUCTOS");
+	%>
+<body>
+
+	
+
+</body>
+</html>
